@@ -1,0 +1,144 @@
+body, html {
+  height: 100%;
+  margin: 0;
+  font: 400 15px/1.8 "Lato", sans-serif;
+  color:#777;
+}
+
+.bgimg-1, .bgimg-2, .bgimg-3 {
+  position: relative;
+  opacity: 0.65;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+}
+.bgimg-1 {
+  background-image: url("train2.jpg");
+  min-height: 100%;
+}
+
+.bgimg-2 {
+  background-image: url("train3.jpg");
+  min-height: 400px;
+}
+
+.bgimg-3 {
+  background-image: url("train1.jpg");
+  min-height: 400px;
+}
+
+.bgimg-5 {
+    position: relative;;
+  opacity: 0.65;
+
+  background-position: center;
+    background-image: url("train9.jpg");
+    height: 500px;
+
+  }
+
+
+.set {
+    background-image: url("train4.jpg");
+    position: relative;
+  opacity: 0.5;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+}
+
+.caption {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 100%;
+  text-align: center;
+  color: #000;
+}
+
+.caption span.border {
+  background-color: #111;
+  color: #fff;
+  padding: 20px;
+  font-size: 35px;
+  letter-spacing: 10px;
+  text-decoration-line: none;
+}
+
+h3 {
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  font: 20px "Lato", sans-serif;
+  color: #111;
+}
+
+li
+{
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    font: 20px "Lato", sans-serif;
+    color: #111;
+}
+
+
+
+.div1 {
+    overflow: hidden;
+    background-color: #333;
+    top: 0;
+    width: 100%;
+  }
+  
+  a:hover{
+    box-shadow: 20px 20px 30px black;
+  }
+  
+  .div1 a {
+    margin: auto;
+    float: left;
+    display: block;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+  }
+  
+  .div1 a:hover {
+    background: #ddd;
+    color: black;
+  }
+
+
+  .divv1 {
+    overflow: hidden;
+    background-color: #333;
+    width: 100%;
+  }
+  
+  
+  .divv1 a {
+    margin: auto;
+    float: left;
+    display: block;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+  }
+  
+  .divv1 a:hover {
+    background: #ddd;
+    color: black;
+  }
+  
+  #footer
+  {
+      font-size: 18px;
+      color: #fff;
+  }

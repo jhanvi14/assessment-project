@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="style.css">
+
+<style>
+
+body {
+  margin: 0;
+  min-width: 250px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+
+#comp {
+  margin-left: 200px;
+  margin-right: 200px;
+  padding: 0;
+  background: #f9f9f9;
+}
+
+
+#code { 
+    float:left;   
+    width:25%; 
+    background: #f9f9f9;
+} 
+
+
+#name{ 
+    float:left;  
+    width:25%; 
+    background: #f9f9f9;
+} 
+
+#arr{ 
+    float:left; 
+    width:25%; 
+    background: #f9f9f9; 
+} 
+
+#dep{ 
+    float:left; 
+    width:25%;
+    background: #f9f9f9;  
+} 
+
+
+
+.header {
+  background-color: #f44336;
+  padding: 30px 40px;
+  color: white;
+  text-align: center;
+  margin-left: 200px;
+  margin-right: 200px;
+}
+
+.header:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+
+input {
+  margin: 0;
+  border: none;
+  border-radius: 0;
+  width: 75%;
+  height: 48px;
+  padding: 10px;
+  float: left;
+  font-size: 16px;
+}
+
+
+.addBtn {
+  padding: 10px;
+  width: 25%;
+  background: #d9d9d9;
+  color: #555;
+  float:right;
+  text-align: center;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s;
+  border-radius: 0;
+}
+
+.addBtn:hover {
+  background-color: #bbb;
+}
+
+#img1 {
+    margin-top: 100px;
+}
+
+#tname {
+    background: black;
+    color: white;
+}
+
+</style>
+
+</head>
+<body>
+
+        <div id="myDIV" class="header">
+                <h2 style="margin:5px">Search your Train's Route</h2>
+                <input type="text" id="myInput" placeholder="Enter Train Number.." required>
+                <span onclick="getdetails()" class="addBtn">Fetch Details</span>
+              </div>
+              
+              <div id="comp">
+                  <h1 id="tname" align='center'></h1>
+                  <div id="code">
+                        <h3>Station Code</h3>
+                  </div>
+
+                  <div id="name">
+                        <h3>Station Name</h3>
+                  </div>
+
+                  <div id="arr">
+                        <h3>Arrival Time</h3>
+                  </div>
+
+                  <div id="dep">
+                        <h3>Departure Time</h3>
+                  </div>
+
+              </div>
+
+
+    <script>
+        function getdetails() {
+
+        var tno=document.getElementById('myInput').value;
+        //console.log(tno);
+        var doc=document.getElementById('comp');
+        var code=document.getElementById('code');
+        var name=document.getElementById('name');
+        var arr=document.getElementById('arr');
+        var dep=document.getElementById('dep');
+        var tname=document.getElementById('tname');
+
+        //var doc2=document.getElementById('name');
+        var url='https://api.railwayapi.com/v2/route/train/'+tno+'/apikey/u91b012com/'
+        var xhr=new XMLHttpRequest();
+        xhr.open('GET',url);
+        xhr.onreadystatechange=test
+
+
+        function test(){
+            if(this.status==200 && this.readyState==4){
+                var responseData=JSON.parse(this.responseText)
+                console.log(responseData);
+                var len=responseData.route.length;
+                console.log(len);
+                tname.innerHTML=responseData.train.name;
+                for(var i=1;i<len;i++)
+                {
+                    var child=document.createElement('p')
+                    child.innerHTML=responseData.route[i].station.code 
+                    code.appendChild(child)
+                    
+                }
+
+                   
+
+                for(var i=1;i<len;i++)
+                {
+                    var child=document.createElement('p')
+                    child.innerHTML=responseData.route[i].station.name
+                    name.appendChild(child)
+
+                }
+
+                for(var i=1;i<len;i++)
+                {
+                    var child=document.createElement('p')
+                    child.innerHTML=responseData.route[i].scharr;
+                    arr.appendChild(child)
+
+                }
+
+                for(var i=1;i<len;i++)
+                {
+                    var child=document.createElement('p')
+                    child.innerHTML=responseData.route[i].schdep;
+                    dep.appendChild(child)
+
+                }
+
+
+            }
+
+        }        
+            
+        
+        
+        xhr.send();
+
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="style.css">
+
+<style>
+
+body {
+  margin: 0;
+  min-width: 250px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+
+#div1 {
+    float: right;
+    margin-right: 400px;
+}
+
+#div2 {
+    float: left;
+    margin-left: 400px;
+}
+
+
+
+.header {
+  background-color: #f44336;
+  padding: 30px 40px;
+  color: white;
+  text-align: center;
+  margin-left: 200px;
+  margin-right: 200px;
+}
+
+.header:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+
+input {
+  margin:0;
+  border:2;
+  border-radius: 0;
+  width: 800px;
+  height: 48px;
+  padding: 10px;
+  float: left;
+  font-size: 16px;
+}
+
+
+.addBtn {
+  padding: 10px;
+  width: 25%;
+  float: left;
+  background: #d9d9d9;
+  color: #555;
+  text-align: center;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s;
+  border-radius: 0;
+  margin-left: 400px;
+}
+
+.addBtn:hover {
+  background-color: #bbb;
+}
+
+#img1 {
+    margin-top: 100px;
+}
+
+#tname {
+    background: black;
+    color: white;
+}
+
+td {
+    font-size: 20px;
+}
+
+#main {
+    background-color: #555;
+    margin-left: 200px;
+    margin-right: 200px;
+}
+
+p {
+    font-size: 25px;
+}
+
+</style>
+
+</head>
+<body>
+
+        <div id="myDIV" class="header">
+                <h2 style="margin:5px">Live Train Status</h2>
+                <table>
+                    <tr>
+                        <td>Train Number</td>
+                        <td >
+                            <input type="text" name="train_number" placeholder="Enter Train Number..." id="tno" required>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Station Code</td>
+                        <td>
+                            <input type="text" name="stn_code" placeholder="Enter Station Code (IN CAPS)..." id="stn" required>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Date</td>
+                        <td>
+                            <input type="text" name="date" placeholder="Enter date in DD-MM-YYYY..." id="date" required>
+                        </td>
+                    </tr>
+                </table>
+            
+                <span onclick="getdetails()" class="addBtn">Fetch Details</span>
+</div id="main">
+              <div>
+              <div id="div1">
+                  <div id="train"></div>
+                  <div id="num"></div>
+                  <div id="st_date"></div>
+                  <div id="stn_name"></div>
+                  <div id="pos"></div>
+
+
+              </div>
+
+              <div id="div2">
+                  <p>Train Name : </p>
+                  <p>Train Number : </p>
+                  <p>Start Date : </p>
+                  <p>Station Name : </p>
+                  <p>Position : </p>
+              </div>
+</div>
+
+    <script>
+        function getdetails() {
+
+        var tno=document.getElementById('tno').value;
+        var stn=document.getElementById('stn').value;
+        var date=document.getElementById('date').value;
+        console.log(date);
+        var doc=document.getElementById('div1');
+
+        //getting elements for printing
+        var train=document.getElementById('train');
+        var num=document.getElementById('num');
+        var st_date=document.getElementById('st_date');
+        var stn_name=document.getElementById('stn_name');
+        var pos=document.getElementById('pos');
+
+        var url='https://api.railwayapi.com/v2/live/train/'+tno+'/station/'+stn+'/date/'+date+'/apikey/u91b012com/'
+        var xhr=new XMLHttpRequest();
+        xhr.open('GET',url);
+        xhr.onreadystatechange=test
+
+
+        function test(){
+            if(this.status==200 && this.readyState==4){
+                var responseData=JSON.parse(this.responseText)
+                console.log(responseData);
+
+                /*doc.innerHTML="Train : \xa0\xa0\xa0\xa0\xa0\xa0\xa0 " +responseData.train.name + "<br>" + "Train Number : " +responseData.train.number + "<br>" +
+                "Start Date : " +responseData.start_date + "<br>" + "Train : " +responseData.train.name + "<br>" +
+                "Station Name : " +responseData.station.name + "<br>" + "Position : " +responseData.position;*/
+
+                    {
+                        var child=document.createElement('p')
+                        child.innerHTML=responseData.train.name;
+                        train.appendChild(child)
+                    }
+
+                    {
+                        var child2=document.createElement('p')
+                        child2.innerHTML=responseData.train.number;
+                        num.appendChild(child2)
+                    }
+
+                    {
+                        var child3=document.createElement('p')
+                        child3.innerHTML=responseData.start_date;
+                        st_date.appendChild(child3);
+                    }
+
+                    {
+                        var child4=document.createElement('p')
+                        child4.innerHTML=responseData.station.name;
+                        stn_name.appendChild(child4);
+                    }
+
+                    {
+                        var child5=document.createElement('p')
+                        child5.innerHTML=responseData.position;
+                        stn_name.appendChild(child5);
+                    }
+
+
+
+            }
+
+        }        
+            
+        
+        
+        xhr.send();
+
+        }
+    </script>
+</body>
+</html>

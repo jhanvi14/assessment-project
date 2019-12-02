@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="style.css">
+
+<style>
+    .weather {
+        position: relative;
+        font-family:Georgia, 'Times New Roman', Times, serif;
+        font-size: 20px;
+        color: black;
+        float: left;
+        margin-left: 500px;
+    }
+    #id2 {
+        float: right;
+        top: 0;
+        margin-right: 600px;
+    }
+
+    .setting {
+        background-color: lightgrey;
+    }
+</style>
+
+</head>
+<body>
+<div class="div1">
+        <a href="index.html">Home</a>
+        <a href="trains.html">Trains</a>
+        <a href="facts.html">Interesting Facts</a>
+        <a href="map.html">Map</a>
+        <a href="https://www.fresherslive.com/indian-railways-recruitment">Career</a>
+        <a href="https://economictimes.indiatimes.com/topic/indian-railways">News</a>
+        <a href="contact.html">Contact Us</a>
+</div>
+
+
+<div class="setting">
+    <div id="weather" class="weather">  </div>
+    <img src="" id="id2" width="120" height="120" >
+</div>
+
+<!--Map-->
+
+<iframe style="margin-left: 170px" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3437.1751349614747!2d76.65758911491052!3d30.51608648171321!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390fc32344a6e2d7%3A0x81b346dee91799ca!2sChitkara%20University!5e0!3m2!1sen!2sin!4v1575193026824!5m2!1sen!2sin" width="1200" height="500" frameborder="0" style="border:2;" allowfullscreen=""></iframe>
+
+
+
+<div class="divv1">
+        <a href="https://www.facebook.com/"> <img src="facebook.png" width="40" height="40">  </a>
+        <a href="https://www.instagram.com/"> <img src="ig.jpg" width="40" height="40"> </a>
+        <a href="https://www.twitter.com/"> <img src="tw.jpg" width="40" height="40"> </a>
+        <a href="https://www.github.com/"> <img src="git.png" width="40" height="40"> </a>
+        <a href="https://deepaknehra14.github.io/resume/" style="margin-left: 100px" target="__blank">Deepak Nehra</a>
+        <a href="https://jhanvi14.github.io/resume/" target="__blank">Jhanvi Manchanda</a>
+        <a href="https://riya239.github.io/resume/" target="__blank">Riya Mehta</a>
+        <p align="left" id="footer" style="float:right; margin-right:50px"> Copyright © 2019 All Rights Reserved </p>
+     
+        
+    </div>
+
+<script>
+     var url='http://api.openweathermap.org/data/2.5/weather?q=Rajpura,Punjab&APPID=12ed32e243cdbfda468de949acdcf094';
+                var xhr=new XMLHttpRequest();
+                xhr.open('GET',url,true);
+                xhr.onreadystatechange=test
+        
+        
+                function test(){
+                    var weather=document.getElementById('weather');
+                     var image=document.getElementById('id2');
+                    if(this.status==200 && this.readyState==4){
+                        var responseData=JSON.parse(this.responseText)
+                        console.log(responseData);
+                        var weather_url=responseData.message
+                        var myJSON = JSON.stringify(responseData);
+                        var iconcode = responseData.weather[0].icon;
+                        console.log(iconcode)
+                        var iconurl = "http://openweathermap.org/img/w/" + iconcode +".png";
+                        console.log(iconurl);
+                        image.setAttribute('src',iconurl);
+                        var temp=responseData.main.temp;
+                        weather.innerHTML="Location : "+responseData.name + "<br>" + "Temperature : "+(temp-271).toFixed(2)+ " C "+"<br>"+ "Description : "+ responseData.weather[0].description;
+
+                    }
+        
+                }       
+                
+                xhr.send();
+</script>
+
+</body>
+</html>

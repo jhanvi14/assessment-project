@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="style.css">
+<style>
+    body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.flip-box {
+  background-color: transparent;
+  width: 100%;
+  height: 400px;
+  border: 1px solid #f1f1f1;
+  perspective: 1000px;
+}
+
+.flip-box-inner {
+  position: relative;
+  width: 100%;
+  height: 400px;
+  text-align: center;
+  transition: 4s;
+  transform-style: preserve-3d;
+}
+
+.flip-box:hover .flip-box-inner {
+  transform: rotateY(360deg);
+  transition: 4s;
+}
+
+.flip-box-front, .flip-box-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+}
+
+.flip-box-front {
+  background-color: #bbb;
+  color: black;
+}
+
+.flip-box-back {
+  background-color: #555;
+  color: white;
+  transform: rotateY(180deg);
+  text-align: center;
+}
+
+#id1{
+    width: 30%;
+    float: left;
+    margin-top: 50px;
+    margin-left: 150px;
+}
+
+#id2{
+    width: 30%;
+    margin-top: 50px;
+    float: right;
+    margin-right: 150px;
+}
+
+#id3 {
+    width:30%;
+    margin-left: 500px;
+    margin-top: 600px;
+}
+
+</style>     
+</head>
+<body>
+        <div class="div1">
+                <a href="index.html">Home</a>
+                <a href="trains.html">Trains</a>
+                <a href="facts.html">Interesting Facts</a>
+                <a href="map.html">Map</a>
+                <a href="https://www.fresherslive.com/indian-railways-recruitment">Career</a>
+                <a href="https://economictimes.indiatimes.com/topic/indian-railways">News</a>
+                <a href="contact.html">Contact Us</a>
+        </div>
+
+<div class="flip-box" id="id1">
+  <div class="flip-box-inner">
+    <div class="flip-box-front">
+        <a href="data.html"> 
+      <img src="train4.jpg" style="width:100%;height:400px"> </a>
+    </div>
+    <div class="flip-box-back">
+                <h1>ROUTE</h1>
+                <p>Tells you the complete details about the route of the train.</p>
+      
+    </div>
+  </div>
+</div>
+
+
+<div class="flip-box" id="id2">
+        <div class="flip-box-inner">
+          <div class="flip-box-front">
+              <a href="data2.html"> 
+            <img src="train5.jpg"  style="width:100%;height:400px"> </a>
+          </div>
+          <div class="flip-box-back">
+            <h1>CANCELLED TRAINS</h1>
+            <p>Tells you the details of all the cancelled trains throughout the day.</p>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="flip-box" id="id3">
+            <div class="flip-box-inner">
+              <div class="flip-box-front">
+                  <a href="data3.html"> 
+                <img src="train6.jpg"  style="width:100%;height:400px"> </a>
+              </div>
+              <div class="flip-box-back">
+                <h1>LIVE STATUS</h1>
+                <p>Tells you the live status of the train.</p>
+              </div>
+            </div>
+          </div>
+
+<br><br><br><br><br><br><br><br><br><br>
+
+
+<div class="divv1">
+        <a href="https://www.facebook.com/"> <img src="facebook.png" width="40" height="40">  </a>
+        <a href="https://www.instagram.com/"> <img src="ig.jpg" width="40" height="40"> </a>
+        <a href="https://www.twitter.com/"> <img src="tw.jpg" width="40" height="40"> </a>
+        <a href="https://www.github.com/"> <img src="git.png" width="40" height="40"> </a>
+        <a href="https://deepaknehra14.github.io/resume/" style="margin-left: 100px" target="__blank">Deepak Nehra</a>
+        <a href="https://jhanvi14.github.io/resume/" target="__blank">Jhanvi Manchanda</a>
+        <a href="https://riya239.github.io/resume/" target="__blank">Riya Mehta</a>
+        <p align="left" id="footer" style="float:right; margin-right:50px"> Copyright © 2019 All Rights Reserved </p>
+     
+        
+    </div>
+
+</body>
+</html>

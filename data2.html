@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="style.css">
+
+<style>
+
+body {
+  margin: 0;
+  min-width: 250px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+
+#comp {
+  margin-left: 200px;
+  margin-right: 200px;
+  padding: 0;
+  background: #f9f9f9;
+}
+
+
+#number { 
+    float:left;   
+    width:25%; 
+    background: #f9f9f9;
+} 
+
+
+#name{ 
+    float:left;  
+    width:25%; 
+    background: #f9f9f9;
+} 
+
+#source{ 
+    float:left; 
+    width:25%; 
+    background: #f9f9f9; 
+} 
+
+#dest{ 
+    float:left; 
+    width:25%;
+    background: #f9f9f9;  
+} 
+
+
+
+.header {
+  background-color: #f44336;
+  padding: 30px 40px;
+  color: white;
+  text-align: center;
+  margin-left: 200px;
+  margin-right: 200px;
+}
+
+.header:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+
+input {
+  margin: 0;
+  border: none;
+  border-radius: 0;
+  width: 75%;
+  height: 48px;
+  padding: 10px;
+  float: left;
+  font-size: 16px;
+}
+
+
+.addBtn {
+  padding: 10px;
+  width: 25%;
+  background: #d9d9d9;
+  color: #555;
+  float:right;
+  text-align: center;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s;
+  border-radius: 0;
+}
+
+.addBtn:hover {
+  background-color: #bbb;
+}
+
+#img1 {
+    margin-top: 100px;
+}
+
+#tname {
+    background: black;
+    color: white;
+}
+
+</style>
+
+</head>
+<body>
+
+        <div id="myDIV" class="header">
+                <h2 style="margin:5px">Cancelled Trains for Today</h2>
+                <input type="text" id="myInput" placeholder="Enter Date In DD-MM-YYYY ..." required>
+                <span onclick="getdetails()" class="addBtn">Fetch Details</span>
+              </div>
+              
+              <div id="comp">
+                  <div id="number">
+                        <h3>Train Number</h3>
+                  </div>
+
+                  <div id="name">
+                        <h3>Train Name</h3>
+                  </div>
+
+                  <div id="source">
+                        <h3>Source</h3>
+                  </div>
+
+                  <div id="dest">
+                        <h3>Destination</h3>
+                  </div>
+
+              </div>
+
+
+    <script>
+        function getdetails() {
+
+        var date=document.getElementById('myInput').value;
+        //console.log(tno);
+        var number=document.getElementById('number');
+        var name=document.getElementById('name');
+        var source=document.getElementById('source');
+        var dest=document.getElementById('dest');
+
+        //var doc2=document.getElementById('name');
+        var url='https://api.railwayapi.com/v2/cancelled/date/'+date+'/apikey/u91b012com/'
+        var xhr=new XMLHttpRequest();
+        xhr.open('GET',url);
+        xhr.onreadystatechange=test
+
+
+        function test(){
+            if(this.status==200 && this.readyState==4){
+                var responseData=JSON.parse(this.responseText)
+                console.log(responseData);
+                var len=responseData.trains.length;
+                console.log(len);
+
+                for(var i=0;i<len;i++)
+                {
+                    var child=document.createElement('p')
+                    child.innerHTML=responseData.trains[i].number; 
+                    number.appendChild(child)
+                    
+                }
+
+                   
+
+                for(var i=0;i<len;i++)
+                {
+                    var child=document.createElement('p')
+                    child.innerHTML=responseData.trains[i].name;
+                    name.appendChild(child)
+
+                }
+
+                for(var i=0;i<len;i++)
+                {
+                    var child=document.createElement('p')
+                    child.innerHTML=responseData.trains[i].source.name;
+                    source.appendChild(child)
+
+                }
+
+                for(var i=0;i<len;i++)
+                {
+                    var child=document.createElement('p')
+                    child.innerHTML=responseData.trains[i].source.name;
+                    dest.appendChild(child)
+
+                }
+
+
+            }
+
+        }        
+            
+        
+        
+        xhr.send();
+
+        }
+    </script>
+</body>
+</html>
